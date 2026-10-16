@@ -8,8 +8,9 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from '../../auth/jwt.guard';
-import { RolGuard } from '../../auth/rol.guard';
+// después
+import { JwtGuard } from '../auth/jwt.guard';
+import { RolGuard } from '../auth/rol.guard';
 import { RabbitAdminService } from './rabbit-admin.service';
 import { AplicarPoliticaDto } from './dto/aplicar-politica.dto';
 

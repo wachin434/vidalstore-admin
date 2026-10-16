@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { COLAS, EXCHANGE_COMANDOS, EXCHANGE_DLX, EXCHANGE_EVENTOS } from '../../mensajeria/topologia';
+import { COLAS, EXCHANGE_COMANDOS, EXCHANGE_DLX, EXCHANGE_EVENTOS } from '../mensajeria/topologia';
 import { AplicarPoliticaDto } from './dto/aplicar-politica.dto';
 
 @Injectable()
