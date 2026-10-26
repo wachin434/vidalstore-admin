@@ -16,8 +16,15 @@ describe('RabbitAdminService', () => {
   beforeEach(() => {
     http = { get: jest.fn(), put: jest.fn(), post: jest.fn(), delete: jest.fn() };
     mensajeria = { publicar: jest.fn().mockResolvedValue('evt-1') };
+    process.env.RABBITMQ_MGMT_USER = 'usuario-prueba';
+    process.env.RABBITMQ_MGMT_PASS = 'clave-prueba';
     servicio = new RabbitAdminService(mensajeria as any);
     (servicio as any).http = http;
+  });
+
+  it('falla si falta la credencial de management', () => {
+    delete process.env.RABBITMQ_MGMT_PASS;
+    expect(() => new RabbitAdminService(mensajeria as any)).toThrow('RABBITMQ_MGMT_PASS');
   });
 
   it('crea una cola quorum por PUT', async () => {
