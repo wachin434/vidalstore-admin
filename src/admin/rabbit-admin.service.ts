@@ -34,8 +34,8 @@ export class RabbitAdminService {
       baseURL: process.env.RABBITMQ_MGMT_URL ?? 'http://localhost:15672',
       timeout: 10_000,
       auth: {
-        username: process.env.RABBITMQ_MGMT_USER ?? 'guest',
-        password: process.env.RABBITMQ_MGMT_PASS ?? 'guest',
+        username: exigirVariable('RABBITMQ_MGMT_USER'),
+        password: exigirVariable('RABBITMQ_MGMT_PASS'),
       },
     });
   }
@@ -220,4 +220,12 @@ export class RabbitAdminService {
 
     throw new BadGatewayException(`error inesperado al hablar con el broker: ${(error as Error).message}`);
   }
+}
+
+function exigirVariable(nombre: string): string {
+  const valor = process.env[nombre];
+  if (!valor) {
+    throw new Error(`Falta la variable ${nombre}: define las credenciales de management en el .env`);
+  }
+  return valor;
 }
