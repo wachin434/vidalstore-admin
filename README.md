@@ -79,3 +79,13 @@ curl -X POST -H "$H" -H "$J" -d '{"nombre":""}' $U/colas
 npm install && npm run build
 npm test        # pruebas unitarias del servicio con el cliente HTTP simulado
 ```
+
+## Cómo levantar el sistema (EP3)
+
+Este repositorio se construye y se levanta junto con los demás desde `vidalstore-plataforma`:
+
+```bash
+bash levantar.sh
+```
+
+Ver el README de `vidalstore-plataforma` para los requisitos y las URLs.
