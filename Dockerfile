@@ -1,5 +1,5 @@
 # Etapa 1: compila TypeScript (necesita las devDependencies)
-FROM node:22-alpine AS build
+FROM node:24-slim AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 # Etapa 2: imagen final, solo dependencias de producción, sin jest ni Nest CLI
-FROM node:22-alpine
+FROM node:24-slim
 ENV NODE_ENV=production
 WORKDIR /app
 COPY package*.json ./
